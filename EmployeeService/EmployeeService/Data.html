@@ -8,8 +8,10 @@
 <body style="padding-top :20px">
     <div class="col-md-10 col-md-offset-1">
         <div class="well">
-            <input type="button" id ="btnLoadEmployee"class="btn btn-success" value="Load Employee" />
-            </div>
+            <input type="button" id="btnLoadEmployee" class="btn btn-success" value="Load Employee" />
+            <span id="loggeduserName" class="text-muted"></span>
+            <input type="button" id="btnLogOff" class="btn btn-success pull-right" value="Log Off" />
+        </div>
         <div class="well hidden" id="divData">
             <table class="table table-bordered" id="tblData">
                 <thead>
@@ -54,11 +56,18 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            debugger;
+            $('#loggeduserName').text(sessionStorage.getItem('userName'));
+
             $('#linkclose').click(function () {
                 $('#diverror').hide('fade');
             })
             $('#errorModal').on('hidden.bs.modal', function () {
                 debugger;
+                window.location.href = 'Login.html';
+            })
+            $('#btnLogOff').click(function () {
+                sessionStorage.removeItem('accessToken');
                 window.location.href = 'Login.html';
             })
             $('#btnLoadEmployee').click(function () {
